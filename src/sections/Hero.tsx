@@ -14,7 +14,7 @@ export const Hero = () => {
 
             <div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-6">
-                Pathwaw to productivity
+                Pathway to productivity
               </h1>
             </div>
 

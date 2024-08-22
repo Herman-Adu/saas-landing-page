@@ -38,7 +38,7 @@ export const ProductShowcase = () => {
             alt="Tube image"
             height={248}
             width={262}
-            className="hidden md:block absolute bottom-24 -left-36"
+            className="hidden md:block absolute bottom-24 -left-36 w-auto"
           />
         </div>
 
