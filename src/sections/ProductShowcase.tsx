@@ -1,6 +1,8 @@
 import productImage from "@/assets/product-image.png";
 import pyramidImage from "@/assets/pyramid.png";
 import tubeImage from "@/assets/tube.png";
+import ArrowIcon from "@/assets/arrow-right.svg";
+import Check from "@/assets/check.svg";
 import Image from "next/image";
 
 export const ProductShowcase = () => {
@@ -21,6 +23,7 @@ export const ProductShowcase = () => {
             for Framer.
           </p>
         </div>
+
         <div className="relative">
           <Image src={productImage} alt="Product image" className="mt-10" />
           <Image
@@ -37,6 +40,80 @@ export const ProductShowcase = () => {
             width={262}
             className="hidden md:block absolute bottom-24 -left-36"
           />
+        </div>
+
+        <div className="grid gap-8 row-gap-5 md:grid-cols-2 lg:grid-cols-4 mt-8 md:px-6">
+          <div className="">
+            <div className="flex items-center w-10 h-8 mb-3">
+              <Check className="h-5 w-5" />
+            </div>
+            <h6 className="mb-2 font-semibold leading-5">
+              Integration ecosystem
+            </h6>
+            <p className="text-base text-gray-700">
+              Track your progress and motivate your efforts everyday.
+            </p>
+            <div className="flex items-center">
+              <button className="btn btn-text gap-1 items-center pl-0">
+                <span>Learn more</span>
+                <ArrowIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="flex items-center w-10 h-8 mb-3">
+              <Check className="h-5 w-5" />
+            </div>
+            <h6 className="mb-2 font-semibold leading-5">
+              Goal setting and tracking
+            </h6>
+            <p className="text-base text-gray-700">
+              Set and track goals with manageable task breakdowns.
+            </p>
+            <div className="flex items-center">
+              <button className="btn btn-text gap-1 items-center pl-0">
+                <span>Learn more</span>
+                <ArrowIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="flex items-center w-10 h-8 mb-3">
+              <Check className="h-5 w-5" />
+            </div>
+            <h6 className="mb-2 font-semibold leading-5">
+              Secure data encryption
+            </h6>
+            <p className="text-base text-gray-700">
+              Ensure your data safety with top-tier encryption.
+            </p>
+            <div className="flex items-center">
+              <button className="btn btn-text gap-1 items-center pl-0">
+                <span>Learn more</span>
+                <ArrowIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="flex items-center w-10 h-8 mb-3">
+              <Check className="h-5 w-5" />
+            </div>
+            <h6 className="mb-2 font-semibold leading-5">
+              Customizable notifications
+            </h6>
+            <p className="text-base text-gray-700">
+              Get alerts on tasks and deadlines that matter most.
+            </p>
+            <div className="flex items-center">
+              <button className="btn btn-text gap-1 items-center pl-0">
+                <span>Learn more</span>
+                <ArrowIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
