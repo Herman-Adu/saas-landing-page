@@ -58,10 +58,16 @@ export const Pricing = () => {
     <section className="py-24 bg-white">
       <div className="container">
         <div className="section-heading">
-          <h2 className="section-title">Pricing</h2>
+          <div className="flex justify-center">
+            <div className="tag">Boost your productivity</div>
+          </div>
+          <h2 className="section-title mt-5">
+            A more effective way to track progress
+          </h2>
           <p className="section-description mt-5">
-            Free forever, Upgrade for unlimited tasks, better security, and
-            exclusive features
+            Effortlessly turn your ideas into a fully functional, responsive,
+            no-code SaaS website in just minutes with the set of free components
+            for Framer.
           </p>
         </div>
         <div className="flex flex-col gap-6 items-center mt-10 lg:flex-row lg:items-end lg:justify-center">

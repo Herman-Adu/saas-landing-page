@@ -42,7 +42,8 @@ export const ProductShowcase = () => {
           />
         </div>
 
-        <div className="grid gap-4 row-gap-5 md:grid-cols-2 lg:grid-cols-4 mt-8 md:px-6">
+        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4 mt-8 md:px-6">
+          {/* <div className="flex flex-col gap-6 items-center mt-10 md:flex-row md:items-center md:justify-center"> */}
           <div className="">
             <div className="flex items-center w-10 h-8 mb-3">
               <Check className="h-5 w-5" />
