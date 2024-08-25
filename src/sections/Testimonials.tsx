@@ -144,6 +144,14 @@ const TestimonialsColumn = (props: {
           setMustFinish(true);
           setDuration(props.duration);
         }}
+        onTouchStart={() => {
+          setMustFinish(true);
+          setDuration(SLOW_DURATION);
+        }}
+        onTouchEnd={() => {
+          setMustFinish(true);
+          setDuration(props.duration);
+        }}
         className="flex flex-col gap-6 pb-6"
       >
         {[...new Array(2)].fill(0).map((_, index) => (
