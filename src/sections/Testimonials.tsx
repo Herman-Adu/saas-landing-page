@@ -12,8 +12,15 @@ import avatar9 from "@/assets/avatar-9.png";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
-import { motion } from "framer-motion";
-import React from "react";
+import {
+  motion,
+  useAnimationControls,
+  useAnimation,
+  useMotionValue,
+  animate,
+} from "framer-motion";
+import React, { useEffect, useState } from "react";
+import useMeasure from "react-use-measure";
 
 const testimonials = [
   {
@@ -80,51 +87,101 @@ const TestimonialsColumn = (props: {
   className?: string | undefined;
   testimonials: typeof testimonials;
   duration: number;
-}) => (
-  <div className={props.className}>
-    <motion.div
-      animate={{
-        translateY: "-50%",
-      }}
-      transition={{
+}) => {
+  const controls = useAnimation();
+
+  //T_DURATION = 25;
+  const SLOW_DURATION = 75;
+
+  const [duration, setDuration] = useState(props.duration);
+
+  let [sliderRef, { height }] = useMeasure();
+
+  const yTranslation = useMotionValue(0);
+
+  const [mustFinsh, setMustFinish] = useState(false);
+  const [rerender, setRerender] = useState(false);
+
+  useEffect(() => {
+    let controls;
+    let finalPosition = -height / 2 - 8;
+
+    if (mustFinsh) {
+      controls = animate(yTranslation, [yTranslation.get(), finalPosition], {
+        ease: "linear",
+        duration: duration * (1 - yTranslation.get() / finalPosition),
+        onComplete: () => {
+          setMustFinish(false);
+          setRerender(!rerender);
+        },
+      });
+    } else {
+      controls = animate(yTranslation, [0, finalPosition], {
         duration: props.duration || 10,
         repeat: Infinity,
         ease: "linear",
         repeatType: "loop",
-      }}
-      className="flex flex-col gap-6 pb-6"
-    >
-      {[...new Array(2)].fill(0).map((_, index) => (
-        <React.Fragment key={index}>
-          {props.testimonials.map(
-            ({ text, imageSrc, name, username }, index) => (
-              <div key={index} className="card">
-                <div>{text}</div>
-                <div className="flex flex-rowitems-center gap-2 mt-5">
-                  <div>
-                    <Image
-                      src={imageSrc}
-                      alt={name}
-                      width={40}
-                      height={40}
-                      className="h-10 w-10 rounded-full"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="font-medium tracking-tight leading-5">
-                      {name}
+      });
+    }
+
+    return controls?.stop;
+  }, [
+    controls,
+    props.duration,
+    duration,
+    height,
+    mustFinsh,
+    rerender,
+    yTranslation,
+  ]);
+
+  return (
+    <div className={props.className}>
+      <motion.div
+        ref={sliderRef}
+        style={{ y: yTranslation }}
+        onHoverStart={() => {
+          setMustFinish(true);
+          setDuration(SLOW_DURATION);
+        }}
+        onHoverEnd={() => {
+          setMustFinish(true);
+          setDuration(props.duration);
+        }}
+        className="flex flex-col gap-6 pb-6"
+      >
+        {[...new Array(2)].fill(0).map((_, index) => (
+          <React.Fragment key={index}>
+            {props.testimonials.map(
+              ({ text, imageSrc, name, username }, index) => (
+                <div key={index} className="card">
+                  <div>{text}</div>
+                  <div className="flex flex-rowitems-center gap-2 mt-5">
+                    <div>
+                      <Image
+                        src={imageSrc}
+                        alt={name}
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 rounded-full"
+                      />
                     </div>
-                    <div className="tracking-tight leading-5">{username}</div>
+                    <div className="flex flex-col">
+                      <div className="font-medium tracking-tight leading-5">
+                        {name}
+                      </div>
+                      <div className="tracking-tight leading-5">{username}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          )}
-        </React.Fragment>
-      ))}
-    </motion.div>
-  </div>
-);
+              )
+            )}
+          </React.Fragment>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 export const Testimonials = () => {
   return (
@@ -142,7 +199,7 @@ export const Testimonials = () => {
           </p>
         </div>
         <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+          <TestimonialsColumn testimonials={firstColumn} duration={10} />
           <TestimonialsColumn
             testimonials={secondColumn}
             className="hidden md:block"
@@ -151,7 +208,7 @@ export const Testimonials = () => {
           <TestimonialsColumn
             testimonials={thirdColumn}
             className="hidden lg:block"
-            duration={17}
+            duration={16}
           />
         </div>
       </div>
