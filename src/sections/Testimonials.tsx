@@ -88,19 +88,15 @@ const TestimonialsColumn = (props: {
   testimonials: typeof testimonials;
   duration: number;
 }) => {
-  const controls = useAnimation();
-
-  //T_DURATION = 25;
-  const SLOW_DURATION = 75;
-
   const [duration, setDuration] = useState(props.duration);
-
-  let [sliderRef, { height }] = useMeasure();
-
-  const yTranslation = useMotionValue(0);
-
   const [mustFinsh, setMustFinish] = useState(false);
   const [rerender, setRerender] = useState(false);
+
+  const controls = useAnimation();
+  const yTranslation = useMotionValue(0);
+  const SLOW_DURATION = 70;
+
+  let [sliderRef, { height }] = useMeasure();
 
   useEffect(() => {
     let controls;
@@ -199,16 +195,16 @@ export const Testimonials = () => {
           </p>
         </div>
         <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={10} />
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
             testimonials={secondColumn}
             className="hidden md:block"
-            duration={19}
+            duration={20}
           />
           <TestimonialsColumn
             testimonials={thirdColumn}
             className="hidden lg:block"
-            duration={16}
+            duration={17}
           />
         </div>
       </div>
