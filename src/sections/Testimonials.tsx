@@ -12,13 +12,7 @@ import avatar9 from "@/assets/avatar-9.png";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
-import {
-  motion,
-  useAnimationControls,
-  useAnimation,
-  useMotionValue,
-  animate,
-} from "framer-motion";
+import { motion, useAnimation, useMotionValue, animate } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 
@@ -94,7 +88,8 @@ const TestimonialsColumn = (props: {
 
   const controls = useAnimation();
   const yTranslation = useMotionValue(0);
-  const SLOW_DURATION = 70;
+  const FAST_DURATION = 25;
+  const SLOW_DURATION = 150;
 
   let [sliderRef, { height }] = useMeasure();
 
@@ -142,7 +137,7 @@ const TestimonialsColumn = (props: {
         }}
         onHoverEnd={() => {
           setMustFinish(true);
-          setDuration(props.duration);
+          setDuration(FAST_DURATION);
         }}
         onTouchStart={() => {
           setMustFinish(true);
@@ -150,7 +145,7 @@ const TestimonialsColumn = (props: {
         }}
         onTouchEnd={() => {
           setMustFinish(true);
-          setDuration(props.duration);
+          setDuration(FAST_DURATION);
         }}
         className="flex flex-col gap-6 pb-6"
       >
